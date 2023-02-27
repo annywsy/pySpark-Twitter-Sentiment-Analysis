@@ -45,7 +45,7 @@ model_pipeline = Pipeline(stages = [document, bert_emb, classsifierdl])
 model = model_pipeline.fit(trainSet)
 
 
-pred = use_pipelineModel.transform(testSet).select('sentiment','text','class.result').toPandas()
+pred = model.transform(testSet).select('sentiment','text','class.result').toPandas()
 pred['result'] = pred['result'].apply(lambda x:x[0])
 print(classification_report(pred.sentiment,pred.result))
 print(accuracy_score(pred.sentiment,pred.result))
