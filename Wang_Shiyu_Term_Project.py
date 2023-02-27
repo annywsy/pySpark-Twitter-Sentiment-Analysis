@@ -17,7 +17,8 @@ print("Spark NLP version", sparknlp.version())
 print("Apache Spark version:", spark.version)
 
 #read dataset and split it into training and testing set
-dataset = spark.read.option("header", False).csv(sys.argv[1]).toDF('sentiment', 'text')
+dataset = spark.read.option("header", False).csv(sys.argv[1]).toDF('sentiment', 'id', 'date', 'query', 'user_id', 'text')
+dataset = dataset.drop('id', 'date', 'query', 'user_id')
 splitedDataset = dataset.randomSplit([0.8, 0.2], seed=26)
 trainSet = splitedDataset[0]
 testSet = splitedDataset[1]
