@@ -12,7 +12,7 @@ from pyspark.sql import SparkSession
 
 from sklearn.metrics import classification_report,accuracy_score
 
-spark = sparknlp.start(gpu=True) #>> for training on GPU
+spark = sparknlp.start()
 print("Spark NLP version", sparknlp.version())
 print("Apache Spark version:", spark.version)
 
